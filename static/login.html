@@ -1,44 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CyberSphere - Login</title>
+  <title>CyberSphere — Login</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: linear-gradient(135deg, #e3f2fd 0%, #f0f4f9 50%, #e8eef5 100%);
-      color: #1a1a2e;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;
+    :root {
+      --bg-gradient:  linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --surface:      #1e293b;
+      --surface-card: #0f172a;
+      --border:       #334155;
+      --border-focus: #6366f1;
+      
+      --accent:       #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-glow:  rgba(99, 102, 241, 0.25);
+      
+      --text:         #f8fafc;
+      --muted:        #94a3b8;
+      
+      --mono:         'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+      --sans:         'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .card { width: 100%; max-width: 420px; background: #fff; border: 2px solid #d1d9e6; padding: 40px; border-radius: 16px; box-shadow: 0 16px 48px rgba(30, 144, 255, 0.2); }
-    header { text-align: center; margin-bottom: 32px; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text);
+      font-family: var(--sans);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    header { text-align: center; margin-bottom: 2rem; }
+
     h1 {
-      font-size: 2.2rem; letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #1e90ff, #4a90e2);
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 0.4rem;
+      font-weight: 800;
     }
-    .subtitle { color: #6c757d; font-size: 0.9rem; font-weight: 500; }
-    .field { margin-bottom: 24px; }
-    .field label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 8px; }
-    .field input { width: 100%; border: 2px solid #d1d9e6; background: #f8fbff; padding: 14px 18px; border-radius: 8px; outline: none; font-size: 1rem; transition: all 0.2s ease; }
-    .field input:focus { border-color: #1e90ff; background: #fff; box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1); }
+
+    .subtitle { color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+
+    .field { margin-bottom: 1.25rem; }
+
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+
+    .field input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.95rem;
+      font-family: var(--mono);
+      transition: all 0.2s ease;
+    }
+
+    .field input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
     .btn {
-      width: 100%; padding: 16px; border: none; background: linear-gradient(135deg, #1e90ff, #4a90e2);
-      color: #fff; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(30, 144, 255, 0.2);
+      width: 100%;
+      padding: 0.85rem;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
-    .btn:hover { background: linear-gradient(135deg, #1a7fdb, #3d85d8); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(30, 144, 255, 0.3); }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
     .btn:active { transform: translateY(0); }
-    .btn.secondary { background: #fff; color: #1e90ff; border: 2px solid #1e90ff; margin-top: 12px; box-shadow: none; }
-    .btn.secondary:hover { background: rgba(30, 144, 255, 0.05); border-color: #4a90e2; color: #4a90e2; }
-    #msg { margin-bottom: 24px; min-height: 20px; font-size: 0.95rem; text-align: center; font-weight: 600; color: #ff4757; }
+
+    .btn.secondary {
+      background: transparent;
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      margin-top: 0.75rem;
+      box-shadow: none;
+    }
+
+    .btn.secondary:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: var(--accent);
+    }
+
+    #msg {
+      margin-bottom: 1.25rem;
+      min-height: 20px;
+      font-size: 0.88rem;
+      text-align: center;
+      font-weight: 600;
+      color: #f43f5e;
+    }
+
     #msg.success { color: #10b981; }
+
     @media (max-width: 480px) {
-      .card { padding: 32px 24px; } h1 { font-size: 1.8rem; } .field input { padding: 12px 16px; font-size: 16px; } .btn { padding: 14px; font-size: 0.95rem; }
+      .card { padding: 1.75rem 1.25rem; }
+      h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -49,7 +151,7 @@
       <p class="subtitle">Secure Credential Manager</p>
     </header>
     <div id="msg"></div>
-    <form onsubmit="return false;">
+    <form onsubmit="event.preventDefault(); handleAuth('/api/login');">
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="you@example.com" required />
@@ -58,7 +160,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Enter your password" required />
       </div>
-      <button type="button" class="btn" onclick="handleAuth('/api/login')">Log in</button>
+      <button type="submit" class="btn">Log in</button>
       <button type="button" class="btn secondary" onclick="handleAuth('/api/signup')">Sign up</button>
     </form>
   </main>
