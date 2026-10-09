@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Password Central</title>
+  <title>CyberSphere</title>
   <style>
     :root {
       --bg:        #f0f4f9;
@@ -283,21 +283,6 @@
       font-style: italic;
     }
 
-    #tab-about {
-      text-align: center;
-      color: var(--muted);
-    }
-    #tab-about a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-      transition: all .2s;
-    }
-    #tab-about a:hover {
-      color: var(--accent-dim);
-      text-decoration: underline;
-    }
-
     #toast {
       position: fixed;
       bottom: 1.5rem;
@@ -362,8 +347,8 @@
 
 <header>
   <div>
-    <h1>🛡️Password Central</h1>
-    <p>Generate · Review · Store · Learn</p>
+    <h1>CyberSphere</h1>
+    <p>Set and Secure your credentials!</p>
   </div>
   <button class="logout-btn" id="logout-btn" title="Log out and clear session">Log out</button>
 </header>
@@ -371,8 +356,8 @@
 <div class="tabs">
   <button class="tab-btn active" data-tab="generate">Generate</button>
   <button class="tab-btn"        data-tab="review">Review</button>
-  <button class="tab-btn"        data-tab="vault">Vault</button>
-  <button class="tab-btn"        data-tab="about">About</button>
+  <button class="tab-btn"        data-tab="vault">DigiSafe</button>
+  <!--<button class="tab-btn"        data-tab="about">About</button>-->
 </div>
 
 <div class="card">
@@ -402,10 +387,10 @@
 
     <div id="gen-save-block" style="display:none">
       <div class="field">
-        <label>Save to vault — app / service</label>
+        <label>Store in DigiSafe — app / service</label>
         <input type="text" id="gen-app" placeholder="e.g. GitHub, Netflix" />
       </div>
-      <button class="btn full" id="gen-save-btn">Save to vault</button>
+      <button class="btn full" id="gen-save-btn">Store in DigiSafe</button>
     </div>
   </div>
 
@@ -432,7 +417,7 @@
         <label>App / service</label>
         <input type="text" id="rev-app" placeholder="e.g. Netflix, Slack" />
       </div>
-      <button class="btn full" id="rev-save-btn">Save to vault</button>
+      <button class="btn full" id="rev-save-btn">Store in DigiSafe</button>
     </div>
   </div>
 
@@ -446,10 +431,10 @@
     </div>
   </div>
 
-  <div class="panel" id="tab-about">
+ <!-- <div class="panel" id="tab-about">
     <h2>Information Page</h2>
     <a href="https://www.nicybersecuritycentre.gov.uk/articles/importance-strong-passwords">Why Strong Passwords Matter</a>
-  </div>
+  </div> -->
 
 </div><!-- /card -->
 
@@ -616,7 +601,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: app, password, app }),
       });
-      toast("✓ Saved to vault");
+      toast("✓ Saved to DigiSafe");
       document.getElementById("gen-app").value = "";
     } catch (e) { toast("⚠ " + e.message); }
   });
@@ -655,7 +640,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: app, password, app }),
       });
-      toast("✓ Saved to vault");
+      toast("✓ Saved to Digisafe");
       document.getElementById("rev-app").value = "";
     } catch (e) { toast("⚠ " + e.message); }
   });
@@ -722,3 +707,4 @@
 </script>
 </body>
 </html>
+
